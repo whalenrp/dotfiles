@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =1
+let g:netrw_dirhist_1='/Users/rwhalen/go-code/src/code.uber.internal/rider/product/consumer-messaging/repository/crosssurfacecache'
+let g:netrw_dirhist_0='/Users/rwhalen/go-code/src/code.uber.internal/rider/product/consumer-messaging/handler/messaging'
+let g:netrw_dirhist_9='/Users/rwhalen/go-code/src/code.uber.internal/rider/product/consumer-messaging/logic-extensions/message_provider'
+let g:netrw_dirhist_8='/Users/rwhalen/gocode/src/code.uber.internal/sre/rdp-config/agreement/rider/cx/consumer-messaging'
+let g:netrw_dirhist_7='/Users/rwhalen/go-code/src/code.uber.internal/rider/product/consumer-messaging/controller/commonhubpresenter'
+let g:netrw_dirhist_6='/Users/rwhalen/go-code/src/code.uber.internal/rider/product/consumer-messaging/logic-extensions/message_provider/adsdecisionenginemessages'
+let g:netrw_dirhist_5='/Users/rwhalen/go-code/src/code.uber.internal/rider/product/consumer-messaging/logic-extensions/message_provider/feedmanagermessages'
+let g:netrw_dirhist_4='/private/var/tmp/_bazel_rwhalen/e9b733cf7d8cd2926b33b7ae0a15eb1d/execroot/__main__/bazel-out/_tmp/actions'
+let g:netrw_dirhist_3='/Users/rwhalen/gocode/src/code.uber.internal/growth/rankingengine/.cerberus'
+let g:netrw_dirhist_2='/Users/rwhalen/gocode/src/code.uber.internal/infra/ctf_example/integration_tests/ex08_loadtesting/config'

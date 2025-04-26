@@ -1,0 +1,47 @@
+adhoc replacement ssh https://docs.google.com/document/d/1Qxys6A2YD1LJ595XkOEQJZEeObEfNho_b9ew-USOzxQ/edit#heading=h.qslevvfpte6s
+citrus logs preprod https://search.uberinternal.com/kibana3v2/#/dashboard/elasticsearch/hp-parameter-serving-request-preprod
+citrus logs prod https://search.uberinternal.com/kibana3v2/#/dashboard/temp/AXk0uwnkl7TAaxiSN_Ng
+docs https://docs.google.com/document/u/0/?tgif=d
+edge endpoints https://ugrafana.uberinternal.com/d/000076505/edge-gateway-endpoints?orgId=1&var-dc=dca1&var-endpoint=rider-presentation-helix&var-handler=rider-banner--ring-banner&var-client=jukebox-message&from=1616744351006&to=1616758692148
+engdocs https://engdocs.uberinternal.com/
+fontana grafana https://ugrafana.uberinternal.com/d/LHC5MqsGk/fontana-deep-dive?orgId=1
+icons https://design-platform.uberinternal.com/tools/icons
+interview question bank https://team.uberinternal.com/display/ENG/SWE+Interview+Question+Bank
+jira https://t3.uberinternal.com/secure/Dashboard.jspa?selectPageId=15938
+mail https://mail.google.com/mail/u/0/#inbox
+oncall emp control panel https://ugrafana.uberinternal.com/d/PuIZbzmnk/emp-control-panel?orgId=1&from=now-24h&to=now&refresh=30s
+oncall cheat sheet reference https://docs.google.com/document/d/1LaIdspQ58867Llc30Q1qTsNlxqADY98GSmCIERoCh00/edit
+oncall https://oncall.uberinternal.com/rotation/2b038340-fca1-4c8e-94fc-760e656d50dc/events
+oncall blackbox https://www.ublackbox.com/v2/?lookback=2h&test=eats_core_impact_0
+oncall business dashboard https://ugrafana.uberinternal.com/d/OkoiKN2Mz/eats-business-dashboard-v2?orgId=1&from=now-3h&to=now&refresh=5m
+oncall postmates business dash https://ugrafana.uberinternal.com/d/Z5TPgcuGk/postmates-eats-business-dashboard?orgId=1
+oncall conan https://conan.uberinternal.com/
+oncall roles https://docs.google.com/presentation/d/1DaCTr8oUuOWfnj-NYr5hT0pyeRfGKmihmGQ5AE3__5I/edit#slide=id.g14035d5361b_0_0
+oncall core flows https://docs.google.com/presentation/d/1DaCTr8oUuOWfnj-NYr5hT0pyeRfGKmihmGQ5AE3__5I/edit#slide=id.g14035d5361b_0_2257
+oncall p3 https://umonitor.uberinternal.com/events/?tier=%5B0%2C2%5D&username=%5B%22change-management%22%5D&zone=%5B%22dca20%22%5D
+oncall mobile metrics https://ugrafana.uberinternal.com/d/000016265/eats-mobile-dashboard?orgId=1
+oncall rt overview https://ugrafana.uberinternal.com/d/jhbg46VWz/rt-overview?orgId=1&refresh=1m
+oncall eats-oncall https://ugrafana.uberinternal.com/d/000061031/eats-oncall?orgId=1
+oncall pulse impressions https://ugrafana.uberinternal.com/d/000074659/eater-pulse?orgId=1&refresh=1m
+oncall eats datastore health https://ugrafana.uberinternal.com/d/XbbngfrZz/eats-database-and-cache?refresh=10s&orgId=1&from=now-24h&to=now
+oncall maps command https://ugrafana.uberinternal.com/d/000061527/maps-pe-command-center?orgId=1
+onelogin https://uber.onelogin.com/portal/
+pager https://uber.pagerduty.com/incidents?assignedToUser=PPJB3LS&status=acknowledged%2Ctriggered%2Cresolved
+sawmill rate limit https://ugrafana.uberinternal.com/d/1kARfuWGz/sawmill-rate-limit?orgId=1&refresh=1m&var-topic=consumer-messaging
+sprint emp https://t3.uberinternal.com/secure/RapidBoard.jspa?rapidView=1484&projectKey=EATSMP&quickFilter=34855
+wiki https://engwiki.uberinternal.com/display/TE0RIDEREQ/Ring+-+Consumer+In-app+Messaging+Platform
+oncall dfr firedrill zoom https://uber.zoom.us/j/8688024379?pwd=Q0RZNWtyYnNBeklsMnIvaENqK1p1dz09#success
+oncall delivery customer impact https://ugrafana.uberinternal.com/d/IvafW3b7z/root-delivery-customer-impact-dashboard?orgId=1
+oncall dfr dash https://ugrafana.uberinternal.com/d/CFZkWT4nk/delivery-first-responders-orders-completed?orgId=1
+oncall dfr canary dashboard https://ugrafana.uberinternal.com/d/qLirxdC7z/eats-high-level-canary-dashboard?orgId=1
+oncall web fusion https://ugrafana.uberinternal.com/d/iZHzuozVk/fusion-service-dashboard?orgId=1&var-service=web-restaurant-manager&var-dc=All&var-host=All&var-callees=All&var-graphql_operation=All&var-pinot_table=All&var-rpc=All&var-lookback=7d&var-summarize=30m&var-percentile=50
+oncall network health https://ugrafana.uberinternal.com/d/HyUeHcmnz/network-availability-slis?orgId=1&from=now-1h&to=now&refresh=1m
+oncall bootstrap https://ugrafana.uberinternal.com/d/j3AGJsYMz/eats-bootstrapeater?orgId=1&from=now-3h&to=now
+oncall bootstrap marketplace https://ugrafana.uberinternal.com/d/_1H0JMIVz/eats-marketplace-dependencies-zavadil?orgId=1&from=now-3h&to=now
+oncall business eats fulfillment https://ugrafana.uberinternal.com/d/GP4NtFnGk/fulfillment-business-metrics?orgId=1&from=1665699986661&to=1665710786661&var-dc=All&var-runtime_env=*&var-deployment=All&var-pod=*&var-city=new_jersey&var-city=new_york&var-city=nyc_suburbs&var-tenancy_type=production
+sdui analytics https://sourcegraph.uberinternal.com/code.uber.internal/mobile/sdui-idl/-/blob/idl/code.uber.internal/mobile/sdui-idl/sdui.thrift
+oncall outage zoom https://uber.zoom.us/j/9999119111
+eats testing https://docs.google.com/document/d/1aUeAoYcmp36iPBHG1xZgdeA2D9hTxXTBhyKnIqRtrmo/edit#heading=h.th7wpm8smkdl
+nvsz- https://sourcegraph.uberinternal.com/code.uber.internal/go-code@4ce4bc7b778dbc82d007953da520dfb93c16ac0e/-/blob/src/code.uber.internal/devexp/cerberus/constants/proxy.go?subtree=true#L9:2
+c https://code.uberinternal.com/
+p https://app.slack.com/client/TSRMBTWBB/D01U4MX4A2Z/thread/GTK212Z2N-1677521894.839309
