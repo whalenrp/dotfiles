@@ -18,15 +18,13 @@ export TERM=xterm-256color
 alias schemaless-client="schemaless-cli"
 export CLICOLOR=1
 alias dotfiles='/usr/bin/git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME"'
-alias vim="nvim"
 set -o vi
-export JAVA_HOME="$(/usr/libexec/java_home -v11)"
+
+source .config/zsh.d/*
 export ANDROID_HOME=$HOME/android-sdk
 export ANDROID_NDK=$HOME/android-ndk
 export ANDROID_NDK_HOME=$ANDROID_NDK
-export PATH=~/.local/share/nvim/mason/packages/gopls:$JAVA_HOME/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools/bin:$PATH:$HOME/bin:/usr/local/sbin
-
-export EDITOR="nvim"
+export PATH=$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools/bin:$PATH:$HOME/bin:/usr/local/sbin
 
 export UBER_HOME=$HOME/Uber
 export USER_UUID="a3ca2506-4e4d-457a-97b4-800d29a825e0"
@@ -40,7 +38,9 @@ export PKG_CONFIG_PATH="/usr/local/opt/readline/lib/pkgconfig:/usr/local/opt/ope
 #Enable uLSP in devpods
 export GOPACKAGESDRIVER_ULSP_MODE=true
 
-eval "$(direnv hook zsh)"
+if $(which direnv &> /dev/null); then
+	eval "$(direnv hook zsh)";
+fi
 
 uid () {
 	echo -n $UBER_OWNER_UUID | pbcopy
