@@ -13,6 +13,7 @@ export HISTFILE=$HOME/.zsh_history
 export PS1="%F{magenta}%2~%f %(?.%F{green}%#%f.%F{red}%#%f) "
 export RPS1='%D{%k:%M}'
 export TERM=xterm-256color
+export EDITOR=/usr/bin/nvim
 [ -n "$TMUX" ] && export TERM=screen-256color # TMUX wants this to be set to a different string to pick up 256 colors
 
 alias schemaless-client="schemaless-cli"

@@ -7,22 +7,21 @@ packadd matchit
 
 let mapleader = ' '
 
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'github/copilot.vim'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'mfussenegger/nvim-dap'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'github/copilot.vim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'ojroques/vim-oscyank'
 Plug 'sainnhe/everforest'
 Plug 'tpope/vim-fugitive'
-Plug 'williamboman/mason.nvim'
-Plug 'github/copilot.vim'
-Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
+Plug 'williamboman/mason.nvim'
 
 let g:everforest_better_performance = 1
 let g:everforest_background = 'hard'
