@@ -9,6 +9,8 @@ let mapleader = ' '
 
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'github/copilot.vim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'olimorris/codecompanion.nvim'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'mfussenegger/nvim-dap'
@@ -356,6 +358,65 @@ vim.keymap.set('n', '<Leader>ds', function()
   local widgets = require('dap.ui.widgets')
   widgets.centered_float(widgets.scopes)
 end)
+
+require("codecompanion").setup({
+  adapters = {
+	  company_claude = {
+      name = "company_claude",
+      url = nil,
+      env = { api_key = "dummy" },
+      headers = {},
+      -- parameters = {
+      --   model = "claude-3-5-sonnet-20241022",
+      --   max_tokens = 4096,
+      --   temperature = 0.3,
+      -- },
+      request = function(self, messages, opts)
+        local prompt = ""
+        for _, message in ipairs(messages) do
+          if message.role == "user" then
+            prompt = message.content
+          end
+        end
+
+        local cmd = string.format('aifx agent run claude -c -p "%s"', prompt:gsub('"', '\\"'))
+        local handle = io.popen(cmd)
+
+        if not handle then
+          error("Failed to execute aifx command")
+        end
+
+        local result = handle:read("*a")
+        local success = handle:close()
+
+        if not success then
+          error("aifx command failed")
+        end
+
+        return {
+          choices = {
+            {
+              message = {
+                content = result:gsub("^%s*(.-)%s*$", "%1")
+              }
+            }
+          }
+        }
+      end
+    }
+  },
+  strategies = {
+    chat = { adapter = "company_claude" },
+    inline = { adapter = "company_claude" }
+  }
+})
+
+-- Key mappings
+vim.keymap.set("n", "<leader>cc", "<cmd>CodeCompanionChat<cr>", { desc = "Code Companion Chat" })
+vim.keymap.set("n", "<leader>ct", "<cmd>CodeCompanionToggle<cr>", { desc = "Code Companion Toggle" })
+vim.keymap.set("n", "<leader>ca", "<cmd>CodeCompanionActions<cr>", { desc = "Code Companion Actions" })
+vim.keymap.set("v", "<leader>ci", "<cmd>CodeCompanionInlineTransform<cr>", { desc = "Inline Transform" })
+
 
 function goFormatAndImports(wait_ms)
  
