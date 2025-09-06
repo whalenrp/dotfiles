@@ -19,6 +19,11 @@ alias vim=/usr/bin/nvim
 
 export CLICOLOR=1
 alias dotfiles='/usr/bin/git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME"'
+dotfiles_init () {
+	git clone --bare https://github.com/whalenrp/dotfiles.git $HOME/.dotfiles
+	dotfiles checkout
+	dotfiles config --local status.showUntrackedFiles no
+}
 set -o vi
 
 alias gs="git status -uno ." # only check down the current dir to make this fast for the monorepo
