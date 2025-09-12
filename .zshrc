@@ -1,6 +1,7 @@
 [ -r $HOME/.profile_lda ] && . $HOME/.profile_lda
 
 autoload -Uz compinit && compinit
+unsetopt BEEP
 
 # ZSH general configuration
 setopt HIST_IGNORE_ALL_DUPS
@@ -34,9 +35,10 @@ alias ad="arc diff HEAD^"
 alias gp="git pull --rebase origin"
 
 if $(which fzf &> /dev/null); then
-	export FZF_DEFAULT_OPTS='--tmux'
+	#export FZF_DEFAULT_OPTS='--tmux'
 	# Set up fzf key bindings and fuzzy completion
 	source <(fzf --zsh)
+	source /usr/share/doc/fzf/examples/key-bindings.zsh
 fi
 
 #source .config/zsh.d/*

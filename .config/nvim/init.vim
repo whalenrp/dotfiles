@@ -199,6 +199,13 @@ require('lspconfig').eslint.setup {
     on_attach = on_attach,
     capabilities = capabilities,
     filetypes = { "javascript", "typescript" },
+    settings = {
+        eslint = {
+            options = {
+                configFile = vim.fn.expand("~/go-code/tools/eslint/eslint.config.ts")
+            }
+        }
+    }
 }
 require('lspconfig').ts_ls.setup {
     on_attach = on_attach,
