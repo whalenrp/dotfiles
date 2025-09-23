@@ -27,6 +27,7 @@ dotfiles_init () {
 }
 set -o vi
 
+alias bell="echo -e '\a'"
 alias gs="git status -uno ." # only check down the current dir to make this fast for the monorepo
 alias gsu="git status -u ."
 alias gd="git diff ." # only check down the current dir to make this fast for the monorepo
