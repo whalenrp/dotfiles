@@ -2,6 +2,7 @@
 
 autoload -Uz compinit && compinit
 unsetopt BEEP
+export DEVPOD_ENVIRONMENT=production
 
 # ZSH general configuration
 setopt HIST_IGNORE_ALL_DUPS
@@ -17,6 +18,11 @@ export TERM=xterm-256color
 export EDITOR=/usr/bin/nvim
 alias vim=nvim
 [ -n "$TMUX" ] && export TERM=screen-256color # TMUX wants this to be set to a different string to pick up 256 colors
+
+jira()
+{
+	JIRA_API_TOKEN=$(usso -ussh t3 -print) command jira "$@"
+}
 
 export CLICOLOR=1
 alias dotfiles='/usr/bin/git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME"'

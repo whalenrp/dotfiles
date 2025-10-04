@@ -355,7 +355,7 @@ require("lazy").setup({
     },
     config = function()
       local dap = require('dap')
-      
+
       dap.adapters.delve = function(callback, config)
         if config.mode == 'remote' and config.request == 'attach' then
           callback({
@@ -375,8 +375,23 @@ require("lazy").setup({
           })
         end
       end
-      
+
       dap.configurations.go = {
+        {
+          type = "delve",
+          request = "attach",
+          name = "Attach to Bazel Debug (port 2345)",
+          mode = "remote",
+          host = "127.0.0.1",
+          port = 2345,
+          cwd = "${env:GOPATH}",
+          substitutePath = {
+            { from = "${env:GOPATH}/src", to = "src" },
+            { from = "${env:GOPATH}/bazel-go-code/external/", to = "external/" },
+            { from = "${env:GOPATH}/bazel-out/", to = "bazel-out/" },
+            { from = "${env:GOPATH}/bazel-go-code/external/go_sdk", to = "GOROOT/" },
+          },
+        },
         {
           request = "attach",
           name = "Attach to Go Slate",
@@ -386,18 +401,7 @@ require("lazy").setup({
           port = 2346,
           host = "127.0.0.1",
           trace = "info",
-          substitutePath = {
-            { from = "${env:GOPATH}/src", to = "src" },
-            { from = "${env:GOPATH}/bazel-go-code/external/", to = "external/" },
-            { from = "${env:GOPATH}/bazel-out/", to = "bazel-out/" },
-            { from = "${env:GOPATH}/bazel-go-code/external/go_sdk", to = "GOROOT/" },
-          },
-        },
-        {
-          type = "delve",
-          request = "attach",
-          name = "Attach to Go",
-          mode = "remote",
+          cwd = "${env:GOPATH}",
           substitutePath = {
             { from = "${env:GOPATH}/src", to = "src" },
             { from = "${env:GOPATH}/bazel-go-code/external/", to = "external/" },
@@ -406,6 +410,55 @@ require("lazy").setup({
           },
         },
       }
+    end,
+  },
+
+  -- Enhanced DAP UI
+  {
+    "rcarriga/nvim-dap-ui",
+    dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
+    keys = {
+      { "<Leader>dt", function() require('dapui').toggle() end, desc = "Toggle DAP UI" },
+    },
+    config = function()
+      local dap, dapui = require("dap"), require("dapui")
+      dapui.setup()
+
+      -- Automatically open/close DAP UI
+      dap.listeners.after.event_initialized["dapui_config"] = function()
+        dapui.open()
+      end
+      dap.listeners.before.event_terminated["dapui_config"] = function()
+        dapui.close()
+      end
+      dap.listeners.before.event_exited["dapui_config"] = function()
+        dapui.close()
+      end
+    end,
+  },
+
+  -- Virtual text showing variable values
+  {
+    "theHamsta/nvim-dap-virtual-text",
+    dependencies = { "mfussenegger/nvim-dap" },
+    config = function()
+      require("nvim-dap-virtual-text").setup({
+        enabled = true,
+        highlight_changed_variables = true,
+        show_stop_reason = true,
+      })
+    end,
+  },
+
+  -- Debug adapter management
+  {
+    "jay-babu/mason-nvim-dap.nvim",
+    dependencies = { "williamboman/mason.nvim", "mfussenegger/nvim-dap" },
+    config = function()
+      require("mason-nvim-dap").setup({
+        ensure_installed = { "delve" },
+        automatic_installation = true,
+      })
     end,
   },
 
