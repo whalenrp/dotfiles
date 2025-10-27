@@ -160,7 +160,6 @@ require("lazy").setup({
       "williamboman/mason.nvim",
     },
     config = function()
-      local lspconfig = require('lspconfig')
       local opts = { noremap = true, silent = true }
       
       -- LSP capabilities
@@ -189,7 +188,7 @@ require("lazy").setup({
       end
 
       -- Configure LSP servers
-      lspconfig.gopls.setup({
+      vim.lsp.config("gopls", {
         cmd = {'gopls', '-remote=auto'},
         on_attach = on_attach,
         capabilities = capabilities,
@@ -203,7 +202,7 @@ require("lazy").setup({
         },
       })
 
-      lspconfig.tailwindcss.setup({
+      vim.lsp.config("tailwindcss", {
         on_attach = on_attach,
         capabilities = capabilities,
         filetypes = { 'html', 'templ' },
@@ -212,7 +211,7 @@ require("lazy").setup({
         },
       })
 
-      lspconfig.templ.setup({
+      vim.lsp.config("templ", {
         on_attach = on_attach,
         capabilities = capabilities,
         cmd = { "templ", "lsp", "-goplsLog=/var/log/templ-gopls.log", "-log=/var/log/templ.log" },
@@ -222,7 +221,7 @@ require("lazy").setup({
         },
       })
 
-      lspconfig.eslint.setup({
+      vim.lsp.config("eslint", {
         on_attach = on_attach,
         capabilities = capabilities,
         filetypes = { "javascript", "typescript" },
@@ -238,7 +237,7 @@ require("lazy").setup({
         }
       })
 
-      lspconfig.ts_ls.setup({
+      vim.lsp.config("ts_ls", {
         on_attach = on_attach,
         capabilities = capabilities,
         filetypes = { "javascript", "typescript" },
@@ -246,6 +245,7 @@ require("lazy").setup({
           debounce_text_changes = 300,
         },
       })
+      vim.lsp.enable({"gopls", "tailwindcss", "templ", "eslint", "ts_ls"})
 
       -- Custom uLSP setup for Go
       vim.api.nvim_create_autocmd('FileType', {
