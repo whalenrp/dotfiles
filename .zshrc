@@ -90,7 +90,6 @@ racecheck() {
 
 dev() {
 	location="$1"
-	rsync -avzr --files-from=/Users/rwhalen/.devpod-synced-files ~ rwhalen.devpod-$location:/home/user/
 	ssh rwhalen-tmux.devpod-$location
 }
 
