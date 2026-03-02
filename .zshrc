@@ -1,8 +1,10 @@
 [ -r $HOME/.profile_lda ] && . $HOME/.profile_lda
 
 autoload -Uz compinit && compinit
+source ~/.config/zsh/fzf-tab.plugin.zsh
 unsetopt BEEP
 export DEVPOD_ENVIRONMENT=production
+export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
 
 # ZSH general configuration
 setopt HIST_IGNORE_ALL_DUPS
@@ -41,13 +43,6 @@ alias gl="git log ."
 alias ad="arc diff HEAD^"
 alias gp="git pull --rebase origin"
 
-if $(which fzf &> /dev/null); then
-	#export FZF_DEFAULT_OPTS='--tmux'
-	# Set up fzf key bindings and fuzzy completion
-	source <(fzf --zsh)
-	source /usr/share/doc/fzf/examples/key-bindings.zsh
-fi
-
 #source .config/zsh.d/*
 
 #############
@@ -57,7 +52,7 @@ alias schemaless-client="schemaless-cli"
 export ANDROID_HOME=$HOME/android-sdk
 export ANDROID_NDK=$HOME/android-ndk
 export ANDROID_NDK_HOME=$ANDROID_NDK
-export PATH=$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools/bin:$PATH:$HOME/bin:/usr/local/sbin
+export PATH=$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools/bin:$PATH:$HOME/bin:/usr/local/sbin:$HOME/.local/bin
 
 export UBER_HOME=$HOME/Uber
 export USER_UUID="a3ca2506-4e4d-457a-97b4-800d29a825e0"
@@ -89,20 +84,9 @@ docker_mysql () {
 	docker exec -it $containerid mysql -u root -h 127.0.0.1
 }
 
-nvm_init() {
-	export NVM_DIR="$HOME/.nvm"
-	[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-	[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-}
-
 racecheck() {
 	bazel test --test_timeout=500 --keep_going --@io_bazel_rules_go//go/config:race --cache_test_results=no $@ --runs_per_test=10
 }
-
-ruby_init() {
-	if command -v rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-}
-alias pixel="emulator -avd Pixel_6_API_33"
 
 dev() {
 	location="$1"
@@ -143,11 +127,39 @@ ulsp () {
 	nohup uexec ~/go-code/tools/ide/ulsp/ulsp-daemon > /tmp/ulsp.log
 }
 
-setup_aider () {
-	mkdir -p ~/bin
-	tb-cli get /prod/progsys/aider/aider ~/bin/aider
-	chmod +x ~/bin/aider
-}
-
 # Created by `pipx` on 2024-08-02 16:57:16
 export PATH="$PATH:/Users/rwhalen/.local/bin"
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+if $(which fzf &> /dev/null); then
+	export FZF_DEFAULT_OPTS='--tmux'
+
+	fzf-dir-widget() {
+		local dir=$(find . -type d 2>/dev/null | sed 's/^\.\///' | fzf)
+		if [[ -n $dir ]]; then
+			LBUFFER="${LBUFFER}${dir}"
+		fi
+		zle reset-prompt
+	}
+	zle -N fzf-dir-widget
+	bindkey '^G' fzf-dir-widget
+
+	bazel_test_fzf() {
+		local target=$(bazel query 'tests(...)' 2>/dev/null | fzf --preview 'echo {}' --preview-window down:3:wrap)
+		if [[ -n $target ]]; then
+			LBUFFER="${LBUFFER}${target}"
+		fi
+		zle reset-prompt
+	}
+	zle -N bazel_test_fzf
+	bindkey '^P' bazel_test_fzf
+fi
+
+if command -v pyenv 1>/dev/null 2>&1; then
+ eval "$()"
+fi
+
+eval "$(zoxide init zsh)"
+

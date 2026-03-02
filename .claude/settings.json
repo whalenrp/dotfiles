@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(bazel:*)",
+      "mcp__monorepo-experts-mcp-server__generate_standard_go_mocks",
+      "mcp__monorepo-experts-mcp-server__generate_glue_go_mocks",
+      "mcp__monorepo-experts-mcp-server__update_build_files",
+      "mcp__monorepo-experts-mcp-server__get_coverage_report"
+    ],
+    "deny": [],
+    "ask": []
+  },
+  "model": "opus",
+  "enabledPlugins": {
+    "gopls-lsp@claude-plugins-official": true
+  },
+  "alwaysThinkingEnabled": true,
+  "fastMode": false,
+  "skipDangerousModePermissionPrompt": true,
+  "statusLine": {
+    "type": "command",
+    "command": "bash /home/user/.claude/statusline.sh"
+  }
+}

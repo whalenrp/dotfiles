@@ -34,6 +34,7 @@ vim.opt.hidden = true
 vim.opt.autowrite = true
 vim.opt.timeoutlen = 500
 vim.opt.ttimeoutlen = 10
+vim.opt.clipboard = "unnamedplus"
 
 -- Configure ripgrep for grep
 if vim.fn.executable('rg') == 1 then
@@ -350,7 +351,7 @@ require("lazy").setup({
       { "<Leader>di", function() require('dap').step_into() end, desc = "Step Into" },
       { "<Leader>du", function() require('dap').step_out() end, desc = "Step Out" },
       { "<Leader>db", function() require('dap').toggle_breakpoint() end, desc = "Toggle Breakpoint" },
-      { "<Leader>dr", function() require('dap').repl.open() end, desc = "Open REPL" },
+      { "<Leader>dr", function() require('dap').repl.toggle() end, desc = "Open REPL" },
       { "<Leader>dl", function() require('dap').run_last() end, desc = "Run Last" },
     },
     config = function()
@@ -396,7 +397,7 @@ require("lazy").setup({
           request = "attach",
           name = "Attach to Go Slate",
           mode = "remote",
-          type = "go",
+          type = "delve",
           debugAdapter = "dlv-dap",
           port = 2346,
           host = "127.0.0.1",
