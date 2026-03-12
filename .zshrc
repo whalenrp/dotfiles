@@ -1,7 +1,11 @@
 [ -r $HOME/.profile_lda ] && . $HOME/.profile_lda
 
 autoload -Uz compinit && compinit
+
 source ~/.config/zsh/fzf-tab.plugin.zsh
+source ~/.config/zsh/git-checkout-completion.zsh
+source ~/.config/zsh/arh/arh.sh
+
 unsetopt BEEP
 export DEVPOD_ENVIRONMENT=production
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
@@ -132,6 +136,7 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.config/zsh/fzf-git/fzf-git.sh ] && source ~/.config/zsh/fzf-git/fzf-git.sh
 if $(which fzf &> /dev/null); then
 	export FZF_DEFAULT_OPTS='--tmux'
 

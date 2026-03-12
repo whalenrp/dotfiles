@@ -11,14 +11,17 @@
     "ask": []
   },
   "model": "opus",
-  "enabledPlugins": {
-    "gopls-lsp@claude-plugins-official": true
-  },
-  "alwaysThinkingEnabled": true,
-  "fastMode": false,
-  "skipDangerousModePermissionPrompt": true,
   "statusLine": {
     "type": "command",
     "command": "bash /home/user/.claude/statusline.sh"
-  }
+  },
+  "enabledPlugins": {
+    "gopls-lsp@claude-plugins-official": true,
+    "uber-reviewer@agent-marketplace": true,
+    "support-engineer@agent-marketplace": true,
+    "oncall-triage@agent-marketplace-dev": true
+  },
+  "alwaysThinkingEnabled": true,
+  "fastMode": false,
+  "skipDangerousModePermissionPrompt": true
 }
