@@ -47,14 +47,48 @@
   ## Notification Protocol
   Always notify user with terminal bell in these situations:
   - When needing user input: `echo -e '\a' && read -p "❓ Input needed: "`
+  - When requesting plan/validation step review: `echo -e '\a' && echo "📋 Review needed"`
   - After completing long tasks: `echo -e '\a' && echo "✅ Task completed"`
   - When commands fail: `echo -e '\a\a\a' && echo "❌ Command failed"`
 
-  ## Phabricator Diff Workflow
+  ## Diff and PR Workflow
+
+  ### Stacked Branches
+  - Each branch in a stack should have EXACTLY ONE commit
+  - When making changes (fixes, refactors, etc.) on a stacked branch, squash into the existing commit
+  - Use `git reset --soft <parent-branch> && git commit -m "..."` to squash multiple commits
+  - After squashing, force-push with `-f` to update the remote branch
+
+  ### Phabricator Diffs
   - NEVER create or update diffs (`arc diff`) unless explicitly asked by the user
   - When asked to "create a diff", only run `arc diff --create` once
   - Do NOT automatically update diffs after making additional changes - wait for explicit instruction
   - If the user makes changes after a diff is created, ask if they want to update the diff rather than doing it automatically
+
+  ## Git Worktrees
+
+  ### Worktree Location
+  - **ALWAYS create worktrees in `~/worktrees/`** - never inside the monorepo
+  - The monorepo uses GOPATH mode with `GOPATH=/home/user/go-code`
+  - Worktrees inside `$GOPATH/src/` are scanned by `goimports` and cause import conflicts
+  - Bazel builds in nested worktrees create symlinks that get indexed as valid import paths
+
+  ### Creating Worktrees
+  ```bash
+  # Correct - outside GOPATH
+  cd /home/user/go-code
+  git worktree add ~/worktrees/my-feature-branch
+
+  # Wrong - inside the monorepo (causes goimports issues)
+  git worktree add src/code.uber.internal/delivery/my-feature
+  ```
+
+  ### Why This Matters
+  When worktrees exist inside the monorepo:
+  - Go's `goimports` recursively scans `$GOPATH/src/` and discovers their packages
+  - Bazel-generated files in worktree `bazel-bin/` get indexed as import paths
+  - This causes duplicate/aliased imports in `.templ` files during formatting
+  - `.gitignore` and `.bazelignore` don't help - `goimports` doesn't read them
 
   ## Go Guidelines
 

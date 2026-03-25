@@ -1,4 +1,18 @@
 {
+  "alwaysThinkingEnabled": true,
+  "apiKeyHelper": "/home/user/.local/share/aifx/bin/claude-genai-token-helper",
+  "enabledPlugins": {
+    "gopls-lsp@claude-plugins-official": true,
+    "superpowers@claude-plugins-official": true,
+    "support-engineer@agent-marketplace": true,
+    "uber-reviewer@agent-marketplace": true
+  },
+  "env": {
+    "ENABLE_TOOL_SEARCH": "false"
+  },
+  "fastMode": false,
+  "model": "opus[1m]",
+  "otelHeadersHelper": "/home/user/.local/share/aifx/bin/claude-telemetry-token-helper",
   "permissions": {
     "allow": [
       "Bash(bazel:*)",
@@ -7,21 +21,12 @@
       "mcp__monorepo-experts-mcp-server__update_build_files",
       "mcp__monorepo-experts-mcp-server__get_coverage_report"
     ],
-    "deny": [],
-    "ask": []
+    "ask": [],
+    "deny": []
   },
-  "model": "opus",
+  "skipDangerousModePermissionPrompt": true,
   "statusLine": {
-    "type": "command",
-    "command": "bash /home/user/.claude/statusline.sh"
-  },
-  "enabledPlugins": {
-    "gopls-lsp@claude-plugins-official": true,
-    "uber-reviewer@agent-marketplace": true,
-    "support-engineer@agent-marketplace": true,
-    "oncall-triage@agent-marketplace-dev": true
-  },
-  "alwaysThinkingEnabled": true,
-  "fastMode": false,
-  "skipDangerousModePermissionPrompt": true
+    "command": "bash /home/user/.claude/statusline.sh",
+    "type": "command"
+  }
 }

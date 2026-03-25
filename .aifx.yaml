@@ -6,14 +6,6 @@ mcp_servers:
   - code-mcp               # GitHub PR & Phabricator tools
   - engwiki                # Confluence documentation search
   - t3                     # JIRA integration
-  - experiment-configuration  # Flipr experiment config
-  - querybuilder-copilot   # SQL query generation
-  - usearch-gen-ai-backend # USearch document retrieval
-  - genai-conan
-  - logging-mcp
-  - m3-mcp-server
-  - oncall-mcp-server
-  - p3-mcp-server
 
 # Personal Plugins
 # plugins:
