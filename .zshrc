@@ -36,6 +36,8 @@ dotfiles_init () {
 	git clone --bare https://github.com/whalenrp/dotfiles.git $HOME/.dotfiles
 	dotfiles checkout
 	dotfiles config --local status.showUntrackedFiles no
+	# Auth not needed for the initial clone, but pushes are configured over ssh
+	dotfiles remote set-url origin git@github-personal:whalenrp/dotfiles.git
 }
 set -o vi
 
