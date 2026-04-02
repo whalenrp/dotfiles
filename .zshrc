@@ -55,10 +55,7 @@ alias gp="git pull --rebase origin"
 # UBER STUFF
 #############
 alias schemaless-client="schemaless-cli"
-export ANDROID_HOME=$HOME/android-sdk
-export ANDROID_NDK=$HOME/android-ndk
-export ANDROID_NDK_HOME=$ANDROID_NDK
-export PATH=$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools/bin:$PATH:$HOME/bin:/usr/local/sbin:$HOME/.local/bin
+export PATH=$HOME/.fzf/bin:$PATH:$HOME/bin:/usr/local/sbin:$HOME/.local/bin
 
 export UBER_HOME=$HOME/Uber
 export USER_UUID="a3ca2506-4e4d-457a-97b4-800d29a825e0"

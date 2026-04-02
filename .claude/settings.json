@@ -8,10 +8,149 @@
     "uber-reviewer@agent-marketplace": true
   },
   "env": {
-    "ENABLE_TOOL_SEARCH": "false"
+    "ANTHROPIC_BASE_URL": "https://genai-api.uberinternal.com",
+    "ANTHROPIC_CUSTOM_HEADERS": "OpenAI-Organization: 3caa75e6-e440-4b5e-afc5-4cc3231cceb4",
+    "CLAUDE_CODE_API_KEY_HELPER_TTL_MS": "3600000",
+    "CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS": "1",
+    "CLAUDE_CODE_ENABLE_TELEMETRY": "1",
+    "CLAUDE_CODE_OTEL_HEADERS_HELPER_DEBOUNCE_MS": "3600000",
+    "DISABLE_AUTOUPDATER": "1",
+    "DISABLE_INSTALLATION_CHECKS": "1",
+    "ENABLE_IDE_INTEGRATION": "true",
+    "ENABLE_TOOL_SEARCH": "false",
+    "OTEL_EXPORTER_OTLP_ENDPOINT": "https://aifx-telemetry-proxy.uberinternal.com",
+    "OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE": "delta",
+    "OTEL_EXPORTER_OTLP_PROTOCOL": "http/json",
+    "OTEL_LOGS_EXPORTER": "otlp",
+    "OTEL_LOG_TOOL_DETAILS": "1",
+    "OTEL_METRICS_EXPORTER": "otlp",
+    "OTEL_SERVICE_NAME": "claude-code",
+    "OTEL_SERVICE_VERSION": "1.0.0"
   },
   "fastMode": false,
-  "model": "opus[1m]",
+  "hooks": {
+    "PermissionRequest": [
+      {
+        "hooks": [
+          {
+            "async": true,
+            "command": "aifx analytics emit --agent claude_code",
+            "timeout": 5,
+            "type": "command"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "async": true,
+            "command": "aifx analytics emit --agent claude_code",
+            "timeout": 5,
+            "type": "command"
+          }
+        ]
+      }
+    ],
+    "PostToolUseFailure": [
+      {
+        "hooks": [
+          {
+            "async": true,
+            "command": "aifx analytics emit --agent claude_code",
+            "timeout": 5,
+            "type": "command"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "async": true,
+            "command": "aifx analytics emit --agent claude_code",
+            "timeout": 5,
+            "type": "command"
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "async": true,
+            "command": "aifx analytics emit --agent claude_code",
+            "timeout": 5,
+            "type": "command"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "async": true,
+            "command": "aifx analytics emit --agent claude_code",
+            "timeout": 5,
+            "type": "command"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "async": true,
+            "command": "aifx analytics emit --agent claude_code",
+            "timeout": 5,
+            "type": "command"
+          }
+        ]
+      }
+    ],
+    "SubagentStart": [
+      {
+        "hooks": [
+          {
+            "async": true,
+            "command": "aifx analytics emit --agent claude_code",
+            "timeout": 5,
+            "type": "command"
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "async": true,
+            "command": "aifx analytics emit --agent claude_code",
+            "timeout": 5,
+            "type": "command"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "async": true,
+            "command": "aifx analytics emit --agent claude_code",
+            "timeout": 5,
+            "type": "command"
+          }
+        ]
+      }
+    ]
+  },
+  "model": "sonnet",
   "otelHeadersHelper": "/home/user/.local/share/aifx/bin/claude-telemetry-token-helper",
   "permissions": {
     "allow": [
