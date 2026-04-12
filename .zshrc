@@ -2,10 +2,6 @@
 
 autoload -Uz compinit && compinit
 
-source ~/.config/zsh/fzf-tab.plugin.zsh
-source ~/.config/zsh/git-checkout-completion.zsh
-source ~/.config/zsh/arh/arh.sh
-
 unsetopt BEEP
 export DEVPOD_ENVIRONMENT=production
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
@@ -40,6 +36,7 @@ dotfiles_init () {
 	dotfiles remote set-url origin git@github-personal:whalenrp/dotfiles.git
 }
 set -o vi
+bindkey -M viins '^R' fzf-history-widget
 
 alias bell="echo -e '\a'"
 alias gs="git status -uno ." # only check down the current dir to make this fast for the monorepo
@@ -134,9 +131,17 @@ export PATH="$PATH:/Users/rwhalen/.local/bin"
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 
+# Completion definitions
+[ -f ~/.config/zsh/git-checkout-completion.zsh ] && source ~/.config/zsh/git-checkout-completion.zsh
+[ -f ~/.config/zsh/arh/arh.sh ] && source ~/.config/zsh/arh/arh.sh
+
+# Completion UI
+[ -f ~/.config/zsh/fzf-tab/fzf-tab.plugin.zsh ] && source ~/.config/zsh/fzf-tab/fzf-tab.plugin.zsh
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f ~/.config/zsh/fzf-git/fzf-git.sh ] && source ~/.config/zsh/fzf-git/fzf-git.sh
 if $(which fzf &> /dev/null); then
+	source <(fzf --zsh)
 	export FZF_DEFAULT_OPTS='--tmux'
 
 	fzf-dir-widget() {
