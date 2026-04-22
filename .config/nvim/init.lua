@@ -317,14 +317,16 @@ require("lazy").setup({
     end,
   },
 
+
   -- Treesitter
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "master",
     build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile" },
     config = function()
       require('nvim-treesitter.configs').setup({
-        ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "go", "templ", "html", "typescript" },
+        ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "go", "templ", "html", "typescript", "markdown", "markdown_inline" },
         sync_install = false,
         auto_install = true,
         highlight = {
@@ -339,6 +341,9 @@ require("lazy").setup({
           additional_vim_regex_highlighting = false,
         },
       })
+      -- Disable markdown injection queries which crash on Neovim 0.12
+      -- (set-lang-from-info-string! calls get_node_text on a node where :range() is nil)
+      vim.treesitter.query.set("markdown", "injections", "")
     end,
   },
 
@@ -493,68 +498,6 @@ require("lazy").setup({
   {
     "github/copilot.vim",
     event = "InsertEnter",
-  },
-  {
-    "olimorris/codecompanion.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
-    keys = {
-      { "<leader>cc", "<cmd>CodeCompanionChat<cr>", desc = "Code Companion Chat" },
-      { "<leader>ct", "<cmd>CodeCompanionToggle<cr>", desc = "Code Companion Toggle" },
-      { "<leader>ca", "<cmd>CodeCompanionActions<cr>", desc = "Code Companion Actions" },
-      { "<leader>ci", "<cmd>CodeCompanionInlineTransform<cr>", mode = "v", desc = "Inline Transform" },
-    },
-    config = function()
-      require("codecompanion").setup({
-        adapters = {
-          http = {
-            company_claude = {
-              name = "company_claude",
-              url = nil,
-              env = { api_key = "dummy" },
-              headers = {},
-              request = function(self, messages, opts)
-                local prompt = ""
-                for _, message in ipairs(messages) do
-                  if message.role == "user" then
-                    prompt = message.content
-                  end
-                end
-
-                local cmd = string.format('aifx agent run claude -c -p "%s"', prompt:gsub('"', '\\"'))
-                local handle = io.popen(cmd)
-
-                if not handle then
-                  error("Failed to execute aifx command")
-                end
-
-                local result = handle:read("*a")
-                local success = handle:close()
-
-                if not success then
-                  error("aifx command failed")
-                end
-
-                return {
-                  choices = {
-                    {
-                      message = {
-                        content = result:gsub("^%s*(.-)%s*$", "%1")
-                      }
-                    }
-                  }
-                }
-              end
-            }
-          }
-        },
-        strategies = {
-          chat = { adapter = "company_claude" },
-          inline = { adapter = "company_claude" }
-        }
-      })
-    end,
   },
 })
 

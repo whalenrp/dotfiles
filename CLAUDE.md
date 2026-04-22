@@ -90,10 +90,28 @@
   - This causes duplicate/aliased imports in `.templ` files during formatting
   - `.gitignore` and `.bazelignore` don't help - `goimports` doesn't read them
 
+  ### Worktree Environment (Linting)
+  Each worktree needs `GOPATH`, `WORKSPACE_ROOT`, and `PYTHONPATH` pointing at its own root (not the main repo) for `arc lint` and Bazel to work correctly. A PostToolUse hook (`~/.claude/hooks/setup-worktree-env.sh`) handles this automatically by writing `.claude/settings.json` into the worktree whenever `git worktree add ~/worktrees/...` is run inside a Claude session.
+
+  If a worktree was created outside Claude (e.g. manually in the shell), write the config manually:
+  ```bash
+  direnv allow ~/worktrees/<name>
+  direnv exec ~/worktrees/<name> env  # verify it works
+  # Then run the hook script directly:
+  echo '{"tool_name":"Bash","tool_input":{"command":"git worktree add ~/worktrees/<name>"}}' \
+    | bash ~/.claude/hooks/setup-worktree-env.sh
+  ```
+
   ## Go Guidelines
 
   - Our styleguide is here: https://github.com/uber-go/guide/blob/master/style.md
 
   ## Subagents
   - Subagents should pass back to the main agent a summary of their work and any relevant data or results. This allows the main agent to keep track of progress and make informed decisions about next steps.
+
+  ## Slack Channels
+  - `#go-retro-web-framework-working-group`: `C080SGGHNH0`
+
+  ## BMO Queue
+  When asked to "queue X in #channel", send a Slack message to that channel with the content `!wadd X`.
 
