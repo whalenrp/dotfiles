@@ -17,7 +17,7 @@ export HISTFILE=$HOME/.zsh_history
 export PS1="%F{magenta}%2~%f %(?.%F{green}%#%f.%F{red}%#%f) "
 export RPS1='%D{%k:%M}'
 export TERM=xterm-256color
-export EDITOR=/usr/bin/nvim
+export EDITOR=vim
 alias vim=nvim
 [ -n "$TMUX" ] && export TERM=screen-256color # TMUX wants this to be set to a different string to pick up 256 colors
 
@@ -32,6 +32,7 @@ dotfiles_init () {
 	git clone --bare https://github.com/whalenrp/dotfiles.git $HOME/.dotfiles
 	dotfiles checkout
 	dotfiles config --local status.showUntrackedFiles no
+	dotfiles config --local commit.gpgsign false
 	# Auth not needed for the initial clone, but pushes are configured over ssh
 	dotfiles remote set-url origin git@github-personal:whalenrp/dotfiles.git
 }
