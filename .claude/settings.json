@@ -188,6 +188,7 @@
     "ask": [],
     "deny": []
   },
+  "preferredNotifChannel": "terminal_bell",
   "skipDangerousModePermissionPrompt": true,
   "statusLine": {
     "command": "bash /home/user/.claude/statusline.sh",

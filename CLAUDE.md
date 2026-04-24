@@ -59,6 +59,21 @@
   - Use `git reset --soft <parent-branch> && git commit -m "..."` to squash multiple commits
   - After squashing, force-push with `-f` to update the remote branch
 
+  ### Clean commits after `git reset --soft`
+
+  `git reset --soft HEAD~N` puts ALL changes from the reset commits back into the index. If those commits had any stray files (e.g. from a previous messy squash), those files will silently land in your next commit even if you only `git add` your intended files.
+
+  **Always do this after a soft reset:**
+  ```bash
+  git reset --soft HEAD~N
+  git restore --staged .       # clear the entire index first
+  git add <only your files>    # then selectively stage
+  git diff --cached --name-only  # verify — no grep filtering allowed
+  git commit ...
+  ```
+
+  **Never verify staged files with `| grep <pattern>`** — it hides unexpected files. Use `git diff --cached --name-only` unfiltered before every commit in a shared monorepo.
+
   ### Phabricator Diffs
   - NEVER create or update diffs (`arc diff`) unless explicitly asked by the user
   - When asked to "create a diff", only run `arc diff --create` once
